@@ -1,17 +1,19 @@
 package core.impl
 
-import core.interfaces.FileManagement
-import enums.PurificationDegree
-import java.io.*
+import core.interfaces.FileManager
+import enums.TypeCleaning
+import java.io.File
+import java.io.FileOutputStream
 import java.nio.file.Files
 import kotlin.io.path.Path
 
-class FileManagementImpl(
-    private val destination: String = "",
-) : FileManagement {
+class FileManagerImpl(
+    private val destination: String = ""
+) : FileManager {
 
     private val networkRequest: NetworkRequests = NetworkRequests()
 
+    //TODO обернуть в try/catch
     override fun uploadFile(url: String, fileName: String, extension: String) {
         networkRequest.executeRequest(url).body?.apply {
             val fileOutputStream = FileOutputStream("$destination/$fileName$extension")
@@ -25,12 +27,12 @@ class FileManagementImpl(
         Files.createDirectory(Path(path))
     }
 
-    override fun clearDirectory(path: String, purificationDegree: PurificationDegree) {
+    override fun clearDirectory(path: String, typeCleaning: TypeCleaning) {
         val clearDirectory = File(path)
         if (clearDirectory.isDirectory) {
-            when(purificationDegree) {
-                PurificationDegree.FILES_ONLY -> clearFilesInDirectory(path)
-                PurificationDegree.WHOLE_DIRECTORY -> {
+            when(typeCleaning) {
+                TypeCleaning.FILES_ONLY -> clearFilesInDirectory(path)
+                TypeCleaning.ALL_DIRECTORY -> {
                     clearFilesInDirectory(path)
                     clearDirectory(path)
                 }

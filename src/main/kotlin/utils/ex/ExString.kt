@@ -1,21 +1,23 @@
 package utils.ex
 
-val camelRegex = "(?<=[a-zA-Z])[A-Z]".toRegex()
-val spaceRegex = "\\s".toRegex()
-val numbersRegex = "\\d".toRegex()
-val specialCharactersRegex = "\\W".toRegex()
-const val underscore = "_"
-const val emptyString = ""
+const val UNDERSCORE = "_"
+const val EMPTY_STRING = ""
+const val DELIMITER_COMMA = ","
+
+private val camelRegex = "(?<=[a-zA-Z])[A-Z]".toRegex()
+private val spaceRegex = "\\s".toRegex()
+private val numbersRegex = "\\d".toRegex()
+private val specialCharactersRegex = "\\W".toRegex()
 
 fun String.extractNameOnly(): String {
-    return this.replace(specialCharactersRegex, emptyString)
-        .replace(spaceRegex, emptyString)
-        .replace(numbersRegex, emptyString)
+    return this.replace(specialCharactersRegex, EMPTY_STRING)
+        .replace(spaceRegex, EMPTY_STRING)
+        .replace(numbersRegex, EMPTY_STRING)
 }
 
 fun String.toSnakeCase(): String {
-    val preparedString = this.replace(spaceRegex, emptyString).trim()
-    return camelRegex.replace(preparedString) { underscore + it.value }.lowercase()
+    val preparedString = this.replace(spaceRegex, EMPTY_STRING).trim()
+    return camelRegex.replace(preparedString) { UNDERSCORE + it.value }.lowercase()
 }
 
 fun String.appendPrefix(prefix: String): String {

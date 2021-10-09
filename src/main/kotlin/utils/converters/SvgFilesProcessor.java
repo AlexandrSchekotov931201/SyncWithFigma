@@ -1,6 +1,7 @@
 package utils.converters;
 
 import com.android.ide.common.vectordrawable.Svg2Vector;
+import kotlin.Deprecated;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,6 +14,7 @@ import static java.nio.file.FileVisitResult.CONTINUE;
 import static java.nio.file.StandardCopyOption.COPY_ATTRIBUTES;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
+@Deprecated(message = "Использовать SvgToVectorConvertor")
 public class SvgFilesProcessor {
 
     private Path sourceSvgPath;
@@ -97,7 +99,7 @@ public class SvgFilesProcessor {
             FileOutputStream fous = new FileOutputStream(targetFile);
             Svg2Vector.parseSvgToXml(source.toFile(), fous);
         } else {
-            System.out.println("Skipping file as its not svg "+source.getFileName().toString());
+            System.out.println("Skipping styles.json as its not svg "+source.getFileName().toString());
         }
     }
 

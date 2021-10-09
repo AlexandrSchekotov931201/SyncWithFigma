@@ -8,7 +8,7 @@ import java.nio.file.*
 import java.nio.file.attribute.BasicFileAttributes
 import java.util.*
 
-class SvgFilesProcessorKt(
+class SvgToVectorConvertor(
     sourceSvgDirectory: String,
     destinationVectorDirectory: String
 ) {

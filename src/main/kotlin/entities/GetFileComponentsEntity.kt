@@ -1,10 +1,6 @@
 package entities
 
 import com.google.gson.annotations.SerializedName
-import enums.PageName
-import utils.ex.appendPrefix
-import utils.ex.extractNameOnly
-import utils.ex.toSnakeCase
 
 data class FileComponentsEntity(
     @SerializedName("error") val isError: Boolean,

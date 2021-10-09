@@ -16,11 +16,9 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp")
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.9.1"))
     implementation("com.squareup.okhttp3:logging-interceptor")
-
     implementation("com.google.code.gson:gson:2.8.7")
-
     implementation("com.android.tools:sdk-common:25.3.0")
-
+    implementation("com.jcabi.incubator:xembly:0.25.0")
     testImplementation(kotlin("test"))
 }
 

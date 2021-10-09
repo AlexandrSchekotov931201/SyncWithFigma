@@ -1,20 +1,28 @@
-import Config.SRC_RESOURCES_SVG
-import Config.SRC_RESOURCES_VECTOR
+import Config.PATH_RESOURCES_COLOR
+import Config.PATH_RESOURCES_SVG
+import Config.PATH_RESOURCES_VECTOR
 import core.impl.FigmaApiImpl
 import core.impl.ApplicationImpl
-import core.impl.FileManagementImpl
+import core.impl.FileManagerImpl
+import core.impl.FileXmlManagerImpl
 import core.interfaces.FigmaApi
-import utils.converters.SvgFilesProcessorKt
+import utils.converters.SvgToVectorConvertor
 
 val figmaApi: FigmaApi = FigmaApiImpl()
-val uploadingFiles = FileManagementImpl(SRC_RESOURCES_SVG)
-val svgFilesProcessorKt = SvgFilesProcessorKt(SRC_RESOURCES_SVG, SRC_RESOURCES_VECTOR)
-val recipientFromFigmaImpl = ApplicationImpl(
+val fileManagerImpl = FileManagerImpl(PATH_RESOURCES_SVG)
+val fileXmlManagerImpl = FileXmlManagerImpl(PATH_RESOURCES_COLOR)
+val svgToVectorConvertor = SvgToVectorConvertor(PATH_RESOURCES_SVG, PATH_RESOURCES_VECTOR)
+val recipientFromFigma = ApplicationImpl(
     figmaApi,
-    uploadingFiles,
-    svgFilesProcessorKt
+    fileManagerImpl,
+    fileXmlManagerImpl,
+    svgToVectorConvertor
 )
 
-fun main(args: Array<String>) {
-    recipientFromFigmaImpl.fetchIcons()
+fun main() {
+    recipientFromFigma.apply {
+        fetchIcons()
+        fetchColors()
+        fetchFonts()
+    }
 }
