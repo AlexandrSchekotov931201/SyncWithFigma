@@ -4,10 +4,11 @@ const val UNDERSCORE = "_"
 const val EMPTY_STRING = ""
 const val DELIMITER_COMMA = ","
 
-private val camelRegex = "(?<=[a-zA-Z])[A-Z]".toRegex()
-private val spaceRegex = "\\s".toRegex()
+val spaceRegex = "\\s".toRegex()
+val specialCharactersRegex = "\\W".toRegex()
+
 private val numbersRegex = "\\d".toRegex()
-private val specialCharactersRegex = "\\W".toRegex()
+private val camelRegex = "(?<=[a-zA-Z])[A-Z]".toRegex()
 
 fun String.extractNameOnly(): String {
     return this.replace(specialCharactersRegex, EMPTY_STRING)
@@ -22,4 +23,8 @@ fun String.toSnakeCase(): String {
 
 fun String.appendPrefix(prefix: String): String {
     return prefix.plus(this)
+}
+
+fun CharSequence?.isNotNullOrEmpty(): Boolean {
+    return !this.isNullOrEmpty()
 }

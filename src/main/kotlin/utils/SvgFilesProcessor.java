@@ -1,4 +1,4 @@
-package utils.converters;
+package utils;
 
 import com.android.ide.common.vectordrawable.Svg2Vector;
 import kotlin.Deprecated;

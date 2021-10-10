@@ -1,19 +1,19 @@
-package core.impl
+package core.api
 
 import com.google.gson.Gson
-import entities.FileComponentsEntity
-import entities.ImagesEntity
-import core.interfaces.FigmaApi
-import entities.GetFileNodesEntity
-import entities.GetFileStylesEntity
+import core.entities.FileComponentsEntity
+import core.entities.ImagesEntity
+import core.entities.GetFileNodesEntity
+import core.entities.GetFileStylesEntity
+import core.network.NetworkRequests
 import okhttp3.Headers
 import okhttp3.Response
 import okhttp3.internal.format
 
-class FigmaApiImpl : FigmaApi {
-
-    private val network = NetworkRequests(BASE_URL)
-    private val gson = Gson()
+class FigmaApiImpl(
+    private val gson: Gson,
+    private val networkRequests: NetworkRequests
+) : FigmaApi {
 
     private val defaultHeaders = Headers.Builder().add(X_FIGMA_TOKEN_ARG, X_FIGMA_TOKEN).build()
 
@@ -53,13 +53,13 @@ class FigmaApiImpl : FigmaApi {
         path: String,
         headers: Headers = defaultHeaders
     ): Response {
-        return network.executeRequest(path, headers)
+        return networkRequests.executeRequest("$BASE_URL$path", headers)
     }
 
     private companion object {
         const val BASE_URL = "https://api.figma.com"
         const val FILE_KEY = "Xmtnszd3c3ENk0KGTDcGb2"
-        const val X_FIGMA_TOKEN = "249195-2f8db857-cdaa-47e3-a9c0-8720e9b03061"
+        const val X_FIGMA_TOKEN = "268731-4889fb37-314e-43fb-a57a-cd281a51c7f8"
         const val X_FIGMA_TOKEN_ARG = "X-FIGMA-TOKEN"
 
         const val GET_FILE_NODES_ENDPOINT = "/v1/files/$FILE_KEY/nodes?ids=%s"

@@ -1,9 +1,9 @@
-package core.interfaces
+package core.api
 
-import entities.FileComponentsEntity
-import entities.GetFileNodesEntity
-import entities.GetFileStylesEntity
-import entities.ImagesEntity
+import core.entities.FileComponentsEntity
+import core.entities.GetFileNodesEntity
+import core.entities.GetFileStylesEntity
+import core.entities.ImagesEntity
 
 interface FigmaApi {
     fun getFileNodes(nodeIds: String): GetFileNodesEntity?

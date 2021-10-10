@@ -2,4 +2,5 @@
 .gradle
 .idea
 src/main/resources/vector
-src/main/resources/color
+src/main/resources/light
+src/main/resources/dark

@@ -1,4 +1,4 @@
-package entities
+package core.entities
 
 import com.google.gson.annotations.SerializedName
 
